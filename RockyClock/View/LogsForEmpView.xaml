@@ -1,0 +1,151 @@
+﻿<Window x:Class="RockyClock.View.LogsForEmpView" Icon="/RockyClock;component/rocky.ico"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RockyClock.View" xmlns:local1="clr-namespace:RockyClock.Converters"
+        mc:Ignorable="d"
+       Title="RockySport" Height="735" Width="1170.5" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <local1:AbsenceConverter x:Key="Absence"/>
+        <local1:DateConverter x:Key="Date"/>
+        <local1:DayOfWeekConverter x:Key="DayOfWeek"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110*"/>
+            <ColumnDefinition Width="462*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="154*"/>
+            <ColumnDefinition Width="69*"/>
+            <ColumnDefinition Width="14*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Cursor="Arrow" Background="#FFC0E2F0" Grid.ColumnSpan="7">
+            <DataGrid x:Name="LogsView" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="581" Margin="278,100,0,0" VerticalAlignment="Top" Width="867" FlowDirection="RightToLeft" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" CanUserReorderColumns="False" CanUserSortColumns="False" HorizontalScrollBarVisibility="Visible" FontFamily="Calibri" ColumnWidth="SizeToHeader" FontSize="15">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="תאריך" Binding="{Binding Date.Date, Mode=OneWay, Converter={StaticResource Date}}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="יום בשבוע" Binding="{Binding Date.DayOfWeek, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DayOfWeek}}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="כניסה ראשונה" Binding="{Binding ChecksInOne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="יציאה ראשונה" Binding="{Binding ChecksOutOne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="כניסה שנייה" Binding="{Binding ChecksInTwo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="יציאה שנייה" Binding="{Binding ChecksOutTwo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="סה''כ שעות" Binding="{Binding HourlyHours, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="דקות איחור" Binding="{Binding MinutesLate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="דקות עזיבה מוקדמת" Binding="{Binding MinutesEarlyLeave, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="האם נעדר" IsReadOnly="True" Binding="{Binding IsAbsance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource Absence}}"/>
+                    <DataGridTextColumn Header="האם שונה ידנית" IsReadOnly="True" Binding="{Binding IsManuallyChanged, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource Absence}}"/>
+                </DataGrid.Columns>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsError, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="1">
+                                <Setter Property="Foreground" Value="Red"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+            <Label Content=":דו''ח לעובד" Height="47" Margin="894,25,0,0" Width="215" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontWeight="Bold" BorderThickness="0,0,0,1" SnapsToDevicePixels="True" BorderBrush="Black"/>
+            <Label Name="EmpName" Content="{Binding Path=EmpName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Height="47" Margin="764,25,0,0" Width="130" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center" BorderThickness="0,0,0,1" SnapsToDevicePixels="True" BorderBrush="Black"/>
+            <Label Content=":לתקופה" Height="47" Margin="582,25,0,0" Width="158" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontWeight="Bold" BorderThickness="0,0,0,1" SnapsToDevicePixels="True" BorderBrush="Black"/>
+            <Label Name="MonthAndYear" Content="{Binding Path=MonthAndYear, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Height="47" Margin="441,25,0,0" Width="141" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center" BorderThickness="0,0,0,1" SnapsToDevicePixels="True" BorderBrush="Black"/>
+            <Label Content=":סה&quot;כ שעות" HorizontalAlignment="Left" Height="37" Margin="137,152,0,0" VerticalAlignment="Top" Width="114" FontWeight="Bold" FontFamily="Calibri" FontSize="20" HorizontalContentAlignment="Right" VerticalContentAlignment="Center"/>
+            <Label Content=":סה&quot;כ היעדרויות" HorizontalAlignment="Left" Height="37" Margin="115,196,0,0" VerticalAlignment="Top" Width="135" FontWeight="Bold" FontFamily="Calibri" FontSize="20" HorizontalContentAlignment="Right"/>
+            <Label Content="{Binding Emp.HourlyTotalHours, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="37" Margin="6,152,0,0" VerticalAlignment="Top" Width="111" FontFamily="Calibri" FontSize="20" VerticalContentAlignment="Center" Foreground="#FF1E5393" FontWeight="Bold"/>
+            <Label Content="{Binding Emp.TotalAbsence, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="37" Margin="6,196,0,0" VerticalAlignment="Top" Width="84" FontFamily="Calibri" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FF1E5393" FontWeight="Bold"/>
+            <Label Content=":סה&quot;כ שעות 125%" HorizontalAlignment="Left" Height="37" Margin="86,287,0,0" VerticalAlignment="Top" Width="165" FontWeight="Bold" FontFamily="Calibri" FontSize="20" HorizontalContentAlignment="Right"/>
+            <Label Content="{Binding Emp.Hourly125, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="37" Margin="6,287,0,0" VerticalAlignment="Top" Width="98" FontFamily="Calibri" FontSize="20" Foreground="#FF1E5393" RenderTransformOrigin="0.512,0.193" VerticalContentAlignment="Center" FontWeight="Bold"/>
+            <Label Content=":סה''כ ימי עבודה" HorizontalAlignment="Left" Height="37" Margin="95,242,0,0" VerticalAlignment="Top" Width="155" FontWeight="Bold" FontFamily="Calibri" FontSize="20" HorizontalContentAlignment="Right"/>
+            <Label Content="{Binding Emp.TotalDaysOfWork, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="37" Margin="6,242,0,0" VerticalAlignment="Top" Width="84" FontFamily="Calibri" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="#FF1E5393" FontWeight="Bold"/>
+        </Grid>
+        <Button x:Name="BackButton" Content="חזור&#xA;" HorizontalAlignment="Left" Height="47" Margin="10,26,0,0" VerticalAlignment="Top" Width="194" BorderBrush="Black" FontSize="30" Cursor="Hand" BorderThickness="0,0,0,1" ClipToBounds="True" VerticalContentAlignment="Center" 
+            HorizontalContentAlignment="Center" FontWeight="Medium" Grid.ColumnSpan="2" Click="BackButton_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#FF83A8B6" Opacity="0.5"/>
+            </Button.Background>
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+        </Button>
+        <Button x:Name="EditRow" Content="ערוך שורה" HorizontalAlignment="Left" Height="47" Margin="66,529,0,0" VerticalAlignment="Top" Width="138" BorderBrush="Black" FontSize="26"  Cursor="Hand" BorderThickness="0,0,0,1" ClipToBounds="True" VerticalContentAlignment="Center" 
+            HorizontalContentAlignment="Center" FontWeight="Medium" Grid.ColumnSpan="2" Foreground="#FF0B2955" Click="EditRow_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#FF83A8B6" Opacity="0.5"/>
+            </Button.Background>
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+        </Button>
+        <Label Content=":סה&quot;כ שעות 150%" HorizontalAlignment="Left" Height="37" Margin="88,334,0,0" VerticalAlignment="Top" Width="163" FontWeight="Bold" FontFamily="Calibri" FontSize="20" Grid.ColumnSpan="2" HorizontalContentAlignment="Right"/>
+        <Label Content="{Binding Emp.Hourly150, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="37" Margin="6,334,0,0" VerticalAlignment="Top" Width="96" FontFamily="Calibri" FontSize="20" Foreground="#FF1E5393" VerticalContentAlignment="Center" FontWeight="Bold"/>
+        <Button x:Name="DeleteRowE" Content="מחק שורה" HorizontalAlignment="Left" Height="47
+                " Margin="66,581,0,0" VerticalAlignment="Top" Width="138" BorderBrush="Black" FontSize="26"  Cursor="Hand" BorderThickness="0,0,0,1" ClipToBounds="True" VerticalContentAlignment="Center" 
+            HorizontalContentAlignment="Center" FontWeight="Medium" Foreground="Red" Click="DeleteRowE_Click" Grid.ColumnSpan="2">
+            <Button.Background>
+                <SolidColorBrush Color="#FF83A8B6" Opacity="0.5"/>
+            </Button.Background>
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+        </Button>
+        <Button x:Name="DeleteAll" Content="מחק הכל" HorizontalAlignment="Left" Height="47" Margin="66,634,0,0" VerticalAlignment="Top" Width="138" BorderBrush="Black" FontSize="26" Cursor="Hand" BorderThickness="0,0,0,1" ClipToBounds="True" VerticalContentAlignment="Center" 
+            HorizontalContentAlignment="Center" FontWeight="Medium" Foreground="Red" Click="DeleteAll_Click" Grid.ColumnSpan="2">
+            <Button.Background>
+                <SolidColorBrush Color="#FFFF6363" Opacity="0.5"/>
+            </Button.Background>
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+        </Button>
+        <Button x:Name="PrintButton" Content="הדפסה" HorizontalAlignment="Left" Height="47" Margin="82,26,0,0" VerticalAlignment="Top" Width="194" BorderBrush="Black" FontSize="30" Cursor="Hand" BorderThickness="0,0,0,1" ClipToBounds="True" VerticalContentAlignment="Center" 
+            HorizontalContentAlignment="Center" FontWeight="Medium" Grid.Column="1" Click="PrintButton_Click">
+            <Button.Background>
+                <SolidColorBrush Color="#FF83A8B6" Opacity="0.5"/>
+            </Button.Background>
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+        </Button>
+        <Button x:Name="ShowAll" Content="הצג הכל" HorizontalAlignment="Left" Height="48" Margin="66,424,0,0" VerticalAlignment="Top" Width="138" BorderBrush="Black" FontSize="18" Cursor="Hand" BorderThickness="0,0,0,1" ClipToBounds="True" VerticalContentAlignment="Center" 
+            HorizontalContentAlignment="Center" FontWeight="Medium" Foreground="#FF0B2955" Click="ShowAll_Click" Grid.ColumnSpan="2">
+            <Button.Background>
+                <SolidColorBrush Color="#FF83A8B6" Opacity="0.5"/>
+            </Button.Background>
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+        </Button>
+        <Button x:Name="ShowError" Content="הצג שגויים בלבד" HorizontalAlignment="Left" Height="48" Margin="66,477,0,0" VerticalAlignment="Top" Width="138" BorderBrush="Black" FontSize="18" Cursor="Hand" BorderThickness="0,0,0,1" ClipToBounds="True" VerticalContentAlignment="Center" 
+            HorizontalContentAlignment="Center" FontWeight="Medium" Foreground="#FF0B2955" Click="ShowError_Click" Grid.ColumnSpan="2">
+            <Button.Background>
+                <SolidColorBrush Color="#FF83A8B6" Opacity="0.5"/>
+            </Button.Background>
+            <Button.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.OpacityMask>
+        </Button>
+
+    </Grid>
+</Window>
