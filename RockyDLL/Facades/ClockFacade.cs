@@ -19,7 +19,7 @@ namespace RockyDLL.Facades
             Data = new GetDataFacade();
 
             if (clock == ClocksEnum.ClockOne)
-                MyClock = new ClockOneDAO();
+                MyClock = new ClockTwoDAO();
             if (clock == ClocksEnum.ClockTwo)
                 MyClock = new ClockTwoDAO();
             if (clock == ClocksEnum.ClockThree)

@@ -42,6 +42,9 @@
                             <DataTrigger Binding="{Binding IsError, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="1">
                                 <Setter Property="Foreground" Value="Red"/>
                             </DataTrigger>
+                            <DataTrigger Binding="{Binding Date.DayOfWeek, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Value="Saturday">
+                                <Setter Property="Background" Value="LightGray"/>
+                            </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </DataGrid.RowStyle>
