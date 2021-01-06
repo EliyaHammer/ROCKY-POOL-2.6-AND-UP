@@ -16,18 +16,12 @@
         "Entry"
         {
         "MsmKey" = "8:_16E1177D0BC42834F856BD7CBF713B9C"
-        "OwnerKey" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
+        "OwnerKey" = "8:_D65179A0C03146A887227AB54194CC1F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_26B62A1FB8E545E987ED412F9C8682D9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -40,7 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_4A2F6650C122A991367E07F0F61E62F5"
-        "OwnerKey" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
+        "OwnerKey" = "8:_D65179A0C03146A887227AB54194CC1F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -64,7 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_50087CCBAB678D7078B5E358E9ADED7B"
-        "OwnerKey" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
+        "OwnerKey" = "8:_D65179A0C03146A887227AB54194CC1F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -94,7 +88,7 @@
         "Entry"
         {
         "MsmKey" = "8:_AFB35FEF6498DC55F62C628F904602EC"
-        "OwnerKey" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
+        "OwnerKey" = "8:_D65179A0C03146A887227AB54194CC1F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -118,13 +112,19 @@
         "Entry"
         {
         "MsmKey" = "8:_D6414CACD712AEDE78574CBF52B64EA4"
-        "OwnerKey" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
+        "OwnerKey" = "8:_D65179A0C03146A887227AB54194CC1F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D65179A0C03146A887227AB54194CC1F"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_DC6D9B96B5D2D8D68491206EF6AF38BD"
-        "OwnerKey" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
+        "OwnerKey" = "8:_D65179A0C03146A887227AB54194CC1F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -136,13 +136,13 @@
         "Entry"
         {
         "MsmKey" = "8:_DDACA3561D4956D6BB3D8AAA15E73DEA"
-        "OwnerKey" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
+        "OwnerKey" = "8:_D65179A0C03146A887227AB54194CC1F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_E8A71665E0D5363E22FECFD710B2FC9A"
-        "OwnerKey" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
+        "OwnerKey" = "8:_D65179A0C03146A887227AB54194CC1F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -172,7 +172,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
+        "OwnerKey" = "8:_D65179A0C03146A887227AB54194CC1F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -830,7 +830,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RockySetup"
         "ProductCode" = "8:{0D8200D7-3EDC-4C12-A25B-52C531851965}"
-        "PackageCode" = "8:{329ACC2B-A13F-4369-81ED-EA6B19A02670}"
+        "PackageCode" = "8:{B550D143-C92B-4E47-BA1D-835D3731614E}"
         "UpgradeCode" = "8:{78CC6C95-6B8D-4949-829B-3271E0C8541F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -950,7 +950,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7C092A4675D74E28BD2122C2D5AE4D7F"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B654DBB5547443D5BF374BA426243063"
             {
             "Name" = "8:RockySport"
             "Arguments" = "8:"
@@ -958,13 +958,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
+            "Target" = "8:_D65179A0C03146A887227AB54194CC1F"
             "Folder" = "8:_5C761AA559DB407A9F35163A963964CE"
             "WorkingFolder" = "8:_28D2B82F069246C4AED279F4F49B398B"
             "Icon" = "8:_26B62A1FB8E545E987ED412F9C8682D9"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B4F9AD2D8EF5470790E3788776CB1299"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C3C1924F3A1F4483AE6E5443C5BDEF1E"
             {
             "Name" = "8:RockySport"
             "Arguments" = "8:"
@@ -972,7 +972,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_3334EEE9103D41DA88BBCF75F42F2A4C"
+            "Target" = "8:_D65179A0C03146A887227AB54194CC1F"
             "Folder" = "8:_7CB7241B4C814029BD4E12B540A2DE46"
             "WorkingFolder" = "8:_28D2B82F069246C4AED279F4F49B398B"
             "Icon" = "8:_26B62A1FB8E545E987ED412F9C8682D9"
@@ -1377,7 +1377,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3334EEE9103D41DA88BBCF75F42F2A4C"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D65179A0C03146A887227AB54194CC1F"
             {
             "SourcePath" = "8:..\\RockyClock\\obj\\Debug\\RockyClock.exe"
             "TargetName" = "8:"
