@@ -146,12 +146,42 @@ namespace RockyDLL.DAL
                             if (date != check)
                             {
                                 log.Date = date;
+                                // here is the new code for putting values by order and not by the log's order.
+                                // down with note is the original one.
+
+                                //assigning only the ones with value by order to a new list of timespans.
+
+                                List<TimeSpan> checking = new List<TimeSpan>();
+                                TimeSpan zero = new TimeSpan(0, 0, 0);
+
+                                for (int f = 0; f < 4; f++)
+                                {
+                                    if (checkingTimes[f] != zero)
+                                        checking.Add(checkingTimes[f]);
+                                }
+
+                                //need to put the list in order
+                                for (int h = 0; h < checking.Count; h++)
+                                {
+                                    if (h == 0)
+                                        log.ChecksInOne = checking[h];
+                                    if (h == 1)
+                                        log.ChecksOutOne = checking[h];
+                                    if (h == 2)
+                                        log.ChecksInTwo = checking[h];
+                                    if (h == 3)
+                                        log.ChecksOutTwo = checking[h];
+                                }
+
+
+                                //this is the original code > exactly the values in the log:
+
+                                /*
                                 log.ChecksInOne = checkingTimes[0];
                                 log.ChecksOutOne = checkingTimes[1];
                                 log.ChecksInTwo = checkingTimes[2];
                                 log.ChecksOutTwo = checkingTimes[3];
-
-                                TimeSpan zero = new TimeSpan(0, 0, 0);
+                                */
 
                                 if ((log.ChecksInOne == zero || log.ChecksInOne == zero) && (log.ChecksInTwo == zero || log.ChecksInTwo == zero))
                                     log.IsAbsance = 1;

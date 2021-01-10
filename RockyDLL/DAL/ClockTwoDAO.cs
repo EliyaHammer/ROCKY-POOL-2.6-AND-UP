@@ -1,8 +1,10 @@
 ﻿using ExcelDataReader;
+using OfficeOpenXml.FormulaParsing.Logging;
 using RockyDLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,7 +15,7 @@ namespace RockyDLL.DAL
 {
     class ClockTwoDAO : ClockDAO
     {
-        //the 00-month - rsaf
+        //rsaf, and 5ya10
         public List<Employee> logs { get; private set; }
 
         protected override Employee[] TakeData(string logLocation)
@@ -42,10 +44,11 @@ namespace RockyDLL.DAL
                         string name = null;
                         if (AttendaceLog.Rows[rowStart][column] is DBNull || AttendaceLog.Rows[rowStart][column] is null)
                         {
-                            break;
+                            name = "ללא שם";
                         }
                         else
                             name = (string)AttendaceLog.Rows[rowStart][column];
+
                         log = new Employee();
                         log.Name = name;
 
@@ -57,7 +60,7 @@ namespace RockyDLL.DAL
                             log.ID = Convert.ToInt32(idRaw);
                         }
                         else
-                            throw new NullReferenceException($"ID is null: row- {rowStart}, column- {column}");
+                            break;
 
                         column -= 8;
                         string yearAndMonth = null;
@@ -143,12 +146,42 @@ namespace RockyDLL.DAL
                             if (date != check)
                             {
                                 log.Date = date;
+
+                                // here is the new code for putting values by order and not by the log's order.
+                                // down with note is the original one.
+
+                                //assigning only the ones with value by order to a new list of timespans.
+
+                                List<TimeSpan> checking = new List<TimeSpan>();
+                                TimeSpan zero = new TimeSpan(0, 0, 0);
+
+                                for (int f = 0; f < 4; f++)
+                                {
+                                    if (checkingTimes[f] != zero)
+                                        checking.Add(checkingTimes[f]);
+                                }
+
+                                //need to put the list in order
+                                for (int h = 0; h < checking.Count; h++)
+                                {
+                                    if (h == 0)
+                                        log.ChecksInOne = checking[h];
+                                    if (h == 1)
+                                        log.ChecksOutOne = checking[h];
+                                    if (h == 2)
+                                        log.ChecksInTwo = checking[h];
+                                    if (h == 3)
+                                        log.ChecksOutTwo = checking[h];
+                                }
+
+                                //this is the original code > exactly the values in the log:
+
+                                /*
                                 log.ChecksInOne = checkingTimes[0];
                                 log.ChecksOutOne = checkingTimes[1];
                                 log.ChecksInTwo = checkingTimes[2];
                                 log.ChecksOutTwo = checkingTimes[3];
-
-                                TimeSpan zero = new TimeSpan(0, 0, 0);
+                                */
 
                                 if ((log.ChecksInOne == zero || log.ChecksInOne == zero) && (log.ChecksInTwo == zero || log.ChecksInTwo == zero))
                                     log.IsAbsance = 1;
@@ -169,7 +202,8 @@ namespace RockyDLL.DAL
                             if (spreadSheet.Tables.Count > currentTable + 1)
                             {
                                 x = 0;
-                                AttendaceLog = spreadSheet.Tables[currentTable + 1];
+                                AttendaceLog = spreadSheet.Tables[currentTable + 1]; currentTable += 1;
+                                currentTable += 1;
                                 rowStart = 2;
                                 column = 9;
                             }
