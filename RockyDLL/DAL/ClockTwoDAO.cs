@@ -58,6 +58,13 @@ namespace RockyDLL.DAL
                         {
                             idRaw = (string)AttendaceLog.Rows[rowStart][column];
                             log.ID = Convert.ToInt32(idRaw);
+
+                            //checkup for now only
+                            if (log.ID == 3)
+                            {
+                                string hey = "hey";
+                            }
+                            //up to here
                         }
                         else
                             break;
@@ -201,8 +208,8 @@ namespace RockyDLL.DAL
                         {
                             if (spreadSheet.Tables.Count > currentTable + 1)
                             {
-                                x = 0;
-                                AttendaceLog = spreadSheet.Tables[currentTable + 1]; currentTable += 1;
+                                x = -1;
+                                AttendaceLog = spreadSheet.Tables[currentTable + 1]; 
                                 currentTable += 1;
                                 rowStart = 2;
                                 column = 9;
